@@ -127,11 +127,16 @@ repositories {
         name 'Valkyrien Skies Internal'
         url "https://maven.valkyrienskies.org"
     }
+
+    maven {
+        name = 'Kotlin for Forge'
+        url = 'https://thedarkcolour.github.io/KotlinForForge/'
+    }
 }
 
 dependencies {
 
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.68'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.2.0'
 
     // Create Flywheel and Registrate
     implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:all") { transitive = false }
@@ -143,7 +148,13 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
 
     // modApi("org.valkyrienskies:valkyrienskies-118-forge:${rootProject.vs2_version}") { transitive = false }
-    implementation("org.valkyrienskies.core:api:1.1.0+c92814e9b7") { transitive = false }
+    implementation fg.deobf("org.valkyrienskies.core:api:1.1.0+c92814e9b7") { transitive = false }
+    implementation fg.deobf("org.valkyrienskies:valkyrienskies-118-forge:${vs2_version}")
+
+    // Eureka airships
+    implementation fg.deobf("curse.maven:eureka-654384:4367155")
+
+    implementation 'thedarkcolour:kotlinforforge:3.9.1'
 
     // Sponge
     annotationProcessor "org.spongepowered:mixin:0.8.3:processor"
